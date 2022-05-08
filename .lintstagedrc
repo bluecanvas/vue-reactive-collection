@@ -1,0 +1,14 @@
+{
+  "*": [
+    "editorconfig-checker"
+  ],
+  "*.{js,ts,md}": [
+    "prettier"
+  ],
+  "package.json": [
+    "sort-package-json --check"
+  ],
+  "*.md": [
+    "remark"
+  ]
+}

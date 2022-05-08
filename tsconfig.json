@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "./types"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
