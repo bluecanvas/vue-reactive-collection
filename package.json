@@ -30,8 +30,8 @@
   ],
   "sideEffects": false,
   "main": "dist/vue-reactive-collection.js",
-  "unpkg": "dist/vue-reactive-collection.min.js",
   "jsdelivr": "dist/vue-reactive-collection.min.js",
+  "unpkg": "dist/vue-reactive-collection.min.js",
   "module": "dist/vue-reactive-collection.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
