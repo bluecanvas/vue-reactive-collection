@@ -1,6 +1,6 @@
 {
   "name": "vue-reactive-collection",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Reactive Map and Set for Vue 2",
   "keywords": [
