@@ -1,5 +1,5 @@
 import VueCompositionApi, { defineComponent } from '@vue/composition-api'
-import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { createLocalVue, shallowMount, mount } from '@vue/test-utils'
 
 import { useReactiveMap, useReactiveSet } from '../src'
 
@@ -111,6 +111,43 @@ describe('vue-reactive-collection', () => {
 
       expect(wrapper.find('li').exists()).toBe(false)
     })
+
+    it('should work when passed as a prop', async () => {
+      const Child = defineComponent({
+        props: {
+          map: {
+            type: Map,
+            required: true,
+          },
+        },
+        template:
+          '<ul><li v-for="([key, value]) in map" :key="key">{{ value }}</li></ul>',
+      })
+
+      const Component = defineComponent({
+        components: { Child },
+        setup() {
+          const map = useReactiveMap<string, string>()
+
+          function add() {
+            map.value.set('foo', 'bar')
+          }
+
+          return {
+            map,
+            add,
+          }
+        },
+        template:
+          '<div><button type="button" @click="add">Add Item</button><child :map="map" /></div>',
+      })
+      const wrapper = mount(Component, { localVue })
+
+      wrapper.find('button').trigger('click')
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.find('li').text()).toBe('bar')
+    })
   })
 
   describe('useReactiveSet', () => {
@@ -216,6 +253,43 @@ describe('vue-reactive-collection', () => {
       await wrapper.vm.$nextTick()
 
       expect(wrapper.find('li').exists()).toBe(false)
+    })
+
+    it('should work when passed as a prop', async () => {
+      const Child = defineComponent({
+        props: {
+          set: {
+            type: Set,
+            required: true,
+          },
+        },
+        template:
+          '<ul><li v-for="item in set" :key="item">{{ item }}</li></ul>',
+      })
+
+      const Component = defineComponent({
+        components: { Child },
+        setup() {
+          const set = useReactiveSet<string>()
+
+          function add() {
+            set.value.add('foo')
+          }
+
+          return {
+            set,
+            add,
+          }
+        },
+        template:
+          '<div><button type="button" @click="add">Add Item</button><child :set="set" /></div>',
+      })
+      const wrapper = mount(Component, { localVue })
+
+      wrapper.find('button').trigger('click')
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.find('li').text()).toBe('foo')
     })
   })
 })
