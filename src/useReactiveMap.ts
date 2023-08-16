@@ -1,4 +1,4 @@
-import { ref, computed } from '@vue/composition-api'
+import { ref, computed } from 'vue-demi'
 
 import type { MapConstructorArgument } from './types'
 import ReactiveMap from './ReactiveMap'
