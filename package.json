@@ -39,7 +39,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist/* && rollup -c build/rollup.config.ts",
+    "build": "rimraf dist/* && rollup --config build/rollup.config.ts --configPlugin typescript",
     "fmt": "npm run fmt:prettier && npm run fmt:package-json",
     "fmt:package-json": "sort-package-json",
     "fmt:prettier": "prettier --write ./**/*.{js,ts,md}",
@@ -75,6 +75,7 @@
     "rollup": "^3.28.0",
     "sort-package-json": "^2.5.1",
     "ts-jest": "^29.1.1",
+    "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "vue": "^2.7.14",
     "vue-template-compiler": "^2.7.14"
