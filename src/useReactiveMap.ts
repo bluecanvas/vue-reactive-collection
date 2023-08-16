@@ -4,7 +4,7 @@ import type { MapConstructorArgument } from './types'
 import ReactiveMap from './ReactiveMap'
 
 export default function useReactiveMap<K, V>(
-  entires?: MapConstructorArgument<K, V>
+  entires?: MapConstructorArgument<K, V>,
 ) {
   function onMutate() {
     map.value = map.value

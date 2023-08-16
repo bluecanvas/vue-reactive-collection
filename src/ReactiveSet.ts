@@ -3,7 +3,7 @@ import type { SetConstructorArgument } from './types'
 export default class ReactiveSet<T> extends Set<T> {
   constructor(
     private readonly onMutate: () => void,
-    values?: SetConstructorArgument<T>
+    values?: SetConstructorArgument<T>,
   ) {
     super(values)
   }

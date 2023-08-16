@@ -3,7 +3,7 @@ import type { MapConstructorArgument } from './types'
 export default class ReactiveMap<K, V> extends Map<K, V> {
   constructor(
     private readonly onMutate: () => void,
-    entries?: MapConstructorArgument<K, V>
+    entries?: MapConstructorArgument<K, V>,
   ) {
     super(entries)
   }
