@@ -2,9 +2,7 @@
 
 ## Installation
 
-Reactive `Map` and `Set` for Vue 2 using [@vue/composition-api](https://github.com/vuejs/composition-api) plugin.
-
-Make sure [@vue/composition-api](https://github.com/vuejs/composition-api) is installed since `vue-reactive-collection` is built upon it.
+Reactive `Map` and `Set` for Vue 2 using [vue-demi](https://github.com/vueuse/vue-demi) plugin.
 
 ### NPM
 
@@ -21,7 +19,7 @@ $ yarn add vue-reactive-collection
 ## Usage
 
 ```ts
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { useReactiveSet, useReactiveMap } from 'vue-reactive-collection'
 
 export default defineComponent({
@@ -76,7 +74,7 @@ const fruits = useReactiveMap(
   new Map([
     ['apple', true],
     ['pear', true],
-  ])
+  ]),
 )
 const vegetables = useReactiveMap([
   ['cabbage', true],

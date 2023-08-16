@@ -1,4 +1,4 @@
-import { ref, computed } from '@vue/composition-api'
+import { ref, computed } from 'vue-demi'
 
 import type { SetConstructorArgument } from './types'
 import ReactiveSet from './ReactiveSet'

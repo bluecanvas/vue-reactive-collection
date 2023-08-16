@@ -1,10 +1,13 @@
 import path from 'path'
+import { URL } from 'url'
 import { defineConfig } from 'rollup'
 import common from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import replace from '@rollup/plugin-replace'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
+
+const __dirname = new URL('.', import.meta.url).pathname
 
 const FILE = {
   name: 'vue-reactive-collection',
@@ -13,9 +16,9 @@ const FILE = {
 
 const DIST_DIR = 'dist'
 const name = 'VueReactiveCollection'
-const external = ['@vue/composition-api']
+const external = ['vue-demi']
 const globals = {
-  '@vue/composition-api': 'VueCompositionAPI',
+  'vue-demi': 'VueDemi',
 }
 const plugins = [
   common(),

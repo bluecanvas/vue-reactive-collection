@@ -1,12 +1,9 @@
-import VueCompositionApi, { defineComponent } from '@vue/composition-api'
-import { createLocalVue, shallowMount, mount } from '@vue/test-utils'
+import { defineComponent } from 'vue-demi'
+import { shallowMount, mount } from '@vue/test-utils'
 
 import { useReactiveMap, useReactiveSet } from '../src'
 
 describe('vue-reactive-collection', () => {
-  let localVue = createLocalVue()
-  localVue.use(VueCompositionApi)
-
   describe('useReactiveMap', () => {
     describe('should accept the same arguments as original Map', () => {
       it('when instance of Map is passed', () => {
@@ -47,10 +44,14 @@ describe('vue-reactive-collection', () => {
             map,
           }
         },
-        template:
-          '<div><button type="button" @click="addItem">Add Item</button><ul><li v-for="([key, value]) in map" :key="key">{{ value }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="addItem">Add Item</button>
+          <ul>
+            <li v-for="([key, value]) in map" :key="key">{{ value }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -74,10 +75,14 @@ describe('vue-reactive-collection', () => {
             map,
           }
         },
-        template:
-          '<div><button type="button" @click="deleteItem">Delete Item</button><ul><li v-for="([key, value]) in map" :key="key">{{ value }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="deleteItem">Delete Item</button>
+          <ul>
+            <li v-for="([key, value]) in map" :key="key">{{ value }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -101,10 +106,14 @@ describe('vue-reactive-collection', () => {
             map,
           }
         },
-        template:
-          '<div><button type="button" @click="clear">Clear</button><ul><li v-for="([key, value]) in map" :key="key">{{ value }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="clear">Clear</button>
+          <ul>
+            <li v-for="([key, value]) in map" :key="key">{{ value }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -120,8 +129,9 @@ describe('vue-reactive-collection', () => {
             required: true,
           },
         },
-        template:
-          '<ul><li v-for="([key, value]) in map" :key="key">{{ value }}</li></ul>',
+        template: /* HTML */ `<ul>
+          <li v-for="([key, value]) in map" :key="key">{{ value }}</li>
+        </ul>`,
       })
 
       const Component = defineComponent({
@@ -138,10 +148,12 @@ describe('vue-reactive-collection', () => {
             add,
           }
         },
-        template:
-          '<div><button type="button" @click="add">Add Item</button><child :map="map" /></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="add">Add Item</button
+          ><child :map="map" />
+        </div>`,
       })
-      const wrapper = mount(Component, { localVue })
+      const wrapper = mount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -190,10 +202,14 @@ describe('vue-reactive-collection', () => {
             set,
           }
         },
-        template:
-          '<div><button type="button" @click="addItem">Add Item</button><ul><li v-for="item in set" :key="item">{{ item }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="addItem">Add Item</button>
+          <ul>
+            <li v-for="item in set" :key="item">{{ item }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -217,10 +233,14 @@ describe('vue-reactive-collection', () => {
             set,
           }
         },
-        template:
-          '<div><button type="button" @click="deleteItem">Delete Item</button><ul><li v-for="item in set" :key="item">{{ item }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="deleteItem">Delete Item</button>
+          <ul>
+            <li v-for="item in set" :key="item">{{ item }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -244,10 +264,14 @@ describe('vue-reactive-collection', () => {
             set,
           }
         },
-        template:
-          '<div><button type="button" @click="clear">Clear</button><ul><li v-for="item in set" :key="item">{{ item }}</li></ul></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="clear">Clear</button>
+          <ul>
+            <li v-for="item in set" :key="item">{{ item }}</li>
+          </ul>
+        </div>`,
       })
-      const wrapper = shallowMount(Component, { localVue })
+      const wrapper = shallowMount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
@@ -263,8 +287,9 @@ describe('vue-reactive-collection', () => {
             required: true,
           },
         },
-        template:
-          '<ul><li v-for="item in set" :key="item">{{ item }}</li></ul>',
+        template: /* HTML */ `<ul>
+          <li v-for="item in set" :key="item">{{ item }}</li>
+        </ul>`,
       })
 
       const Component = defineComponent({
@@ -281,10 +306,12 @@ describe('vue-reactive-collection', () => {
             add,
           }
         },
-        template:
-          '<div><button type="button" @click="add">Add Item</button><child :set="set" /></div>',
+        template: /* HTML */ `<div>
+          <button type="button" @click="add">Add Item</button>
+          <child :set="set" />
+        </div>`,
       })
-      const wrapper = mount(Component, { localVue })
+      const wrapper = mount(Component)
 
       wrapper.find('button').trigger('click')
       await wrapper.vm.$nextTick()
